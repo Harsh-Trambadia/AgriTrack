@@ -1,5 +1,6 @@
 package com.example.agritrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -49,6 +50,8 @@ public class Home extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Adding Activity", Toast.LENGTH_SHORT).show();
+                Intent act = new Intent(getActivity(), ActivityAdd.class);
+                startActivity(act);
             }
         });
 

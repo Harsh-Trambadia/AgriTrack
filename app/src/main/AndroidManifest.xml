@@ -14,6 +14,16 @@
         android:theme="@style/Theme.AgriTrack"
         tools:targetApi="31">
         <activity
+            android:name=".FarmAdd"
+            android:exported="false"
+            android:label="Add Farm"
+            android:parentActivityName=".Homepage"/>
+        <activity
+            android:name=".ActivityAdd"
+            android:exported="false"
+            android:label="Add Activity"
+            android:parentActivityName=".Homepage" />
+        <activity
             android:name=".Homepage"
             android:exported="false" />
         <activity

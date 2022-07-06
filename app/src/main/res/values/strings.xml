@@ -2,4 +2,8 @@
     <string name="app_name">AgriTrack</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activity">Select Activity</string>
+    <string name="farm">Select Farm</string>
+    <string name="crop">Select Crop</string>
+    <string name="date">Select Date</string>
 </resources>
