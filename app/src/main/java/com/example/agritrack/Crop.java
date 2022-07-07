@@ -1,5 +1,6 @@
 package com.example.agritrack;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -46,6 +47,8 @@ public class Crop extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "Adding Crop", Toast.LENGTH_SHORT).show();
+                Intent cadd = new Intent(getActivity(), CropAdd.class);
+                startActivity(cadd);
             }
         });
 
