@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -22,15 +23,9 @@ public class Expense extends Fragment {
     FloatingActionButton ae;
     DbHandler db;
     ArrayList<ExpenseShow> expenseShow;
+    TextView total;
 
-    String tutorials[]
-            = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
-    String cost[]
-            = { "0","1","2","3","4","5","6","7","8","9" };
+
     public Expense(){
 
     }
@@ -52,9 +47,12 @@ public class Expense extends Fragment {
 
        l = (ListView) getView().findViewById(R.id.list);
 
+       total = (TextView) getView().findViewById(R.id.TotalCost);
+       int t = db.showTotal();
+       total.setText(String.valueOf(t));
 
 
-        ExpenseAd adapter = new ExpenseAd(getActivity(), expenseShow);
+        ExpenseAd adapter = new ExpenseAd(getActivity(), R.layout.expense_layout,expenseShow);
         l.setAdapter(adapter);
 
         ae = getView().findViewById(R.id.AddExpense);

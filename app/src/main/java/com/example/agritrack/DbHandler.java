@@ -62,4 +62,17 @@ public class DbHandler extends SQLiteOpenHelper {
         cursorEx.close();
         return l;
     }
+
+    public int showTotal(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        int total;
+        Cursor t = db.rawQuery("select (SUM(value)) AS Total from expense", null);
+        if(t.moveToNext()){
+            total = t.getInt(t.getColumnIndex("Total"));
+        }
+        else{
+            total = 0;
+        }
+        return total;
+    }
 }

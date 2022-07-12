@@ -16,8 +16,8 @@ import java.util.List;
 
 public class ExpenseAd extends ArrayAdapter<ExpenseShow>{
 
-    public ExpenseAd(@NonNull Context context, @NonNull List<ExpenseShow> objects) {
-        super(context, 0, objects);
+    public ExpenseAd(@NonNull Context context,int resource, @NonNull List<ExpenseShow> objects) {
+        super(context, resource, objects);
     }
 
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
@@ -32,7 +32,7 @@ public class ExpenseAd extends ArrayAdapter<ExpenseShow>{
 
         assert currentExpensePosition!=null;
         name.setText(currentExpensePosition.getActname());
-        cost.setText(currentExpensePosition.getValue());
+        cost.setText(String.valueOf(currentExpensePosition.getValue()));
 
         return currentItemView;
     }
