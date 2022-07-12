@@ -10,30 +10,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.agritrack.R;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-public class ExpenseAd extends ArrayAdapter<String> {
+public class ExpenseAd extends ArrayAdapter<ExpenseShow>{
 
-    public String[] objects;
-
-    public ExpenseAd(@NonNull Context context, int resource, @NonNull String[] objects) {
-        super(context, resource, objects);
-        this.objects = objects;
+    public ExpenseAd(@NonNull Context context, @NonNull List<ExpenseShow> objects) {
+        super(context, 0, objects);
     }
 
-    @NonNull
-    @Override
-    public String getItem(int position){
-        return objects[position];
-    }
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
+        View currentItemView = convertView;
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertview, @NonNull ViewGroup parent){
-        convertview = LayoutInflater.from(getContext()).inflate(R.layout.expense_layout, parent, false);
-        TextView name = convertview.findViewById(R.id.Name);
-        name.setText(getItem(position));
-        return convertview;
-    }
+        currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.expense_layout, parent, false);
 
+        ExpenseShow currentExpensePosition = getItem(position);
+
+        TextView name = currentItemView.findViewById(R.id.Name);
+        TextView cost = currentItemView.findViewById(R.id.Cost);
+
+        assert currentExpensePosition!=null;
+        name.setText(currentExpensePosition.getActname());
+        cost.setText(currentExpensePosition.getValue());
+
+        return currentItemView;
+    }
 }

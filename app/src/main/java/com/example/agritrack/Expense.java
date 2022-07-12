@@ -8,21 +8,29 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 
 public class Expense extends Fragment {
     ListView l;
     FloatingActionButton ae;
+    DbHandler db;
+    ArrayList<ExpenseShow> expenseShow;
+
     String tutorials[]
             = { "Algorithms", "Data Structures",
             "Languages", "Interview Corner",
             "GATE", "ISRO CS",
             "UGC NET CS", "CS Subjects",
             "Web Technologies" };
+    String cost[]
+            = { "0","1","2","3","4","5","6","7","8","9" };
     public Expense(){
 
     }
@@ -38,8 +46,15 @@ public class Expense extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        l = (ListView) getView().findViewById(R.id.list);
-        ExpenseAd adapter = new ExpenseAd(getActivity(), R.layout.expense_layout, tutorials);
+
+        db = new DbHandler(getActivity());
+        expenseShow = db.showExpense();
+
+       l = (ListView) getView().findViewById(R.id.list);
+
+
+
+        ExpenseAd adapter = new ExpenseAd(getActivity(), expenseShow);
         l.setAdapter(adapter);
 
         ae = getView().findViewById(R.id.AddExpense);
@@ -53,4 +68,6 @@ public class Expense extends Fragment {
         });
 
     }
+
+
 }
