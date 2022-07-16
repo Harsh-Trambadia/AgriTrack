@@ -15,16 +15,15 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 
 public class Home extends Fragment {
     ListView l;
     FloatingActionButton aa;
-    String tutorials[]
-            = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
+    DbHandler db;
+    ArrayList<ActivityShow> actShow;
+
     public Home(){
         // require a empty public constructor
 
@@ -42,7 +41,11 @@ public class Home extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         l = (ListView) getView().findViewById(R.id.list);
-        HomeAd adapter = new HomeAd(getActivity(), R.layout.activity_layout, tutorials);
+
+        db = new DbHandler(getActivity());
+        actShow = db.showActivity();
+
+        HomeAd adapter = new HomeAd(getActivity(), R.layout.activity_layout, actShow);
         l.setAdapter(adapter);
 
         aa = getView().findViewById(R.id.AddActivity);

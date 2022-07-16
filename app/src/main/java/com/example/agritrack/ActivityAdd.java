@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 public class ActivityAdd extends AppCompatActivity {
     Spinner activity, farm, crop;
     Button actadd;
+    DbHandler db;
+    EditText Fdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +27,13 @@ public class ActivityAdd extends AppCompatActivity {
         farm = findViewById(R.id.SFarm);
         crop = findViewById(R.id.SCrop);
         actadd = findViewById(R.id.add);
+        Fdate = findViewById(R.id.Fdate);
+        db = new DbHandler(this);
+
+        ArrayList<String> fn, cn;
+
+        fn = db.getFarmName();
+        cn = db.getCropName();
 
         ArrayList<String> activityList = new ArrayList<>();
         activityList.add("JAVA");
@@ -37,33 +47,25 @@ public class ActivityAdd extends AppCompatActivity {
         actAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         activity.setAdapter(actAd);
 
-        ArrayList<String> farmList = new ArrayList<>();
-        farmList.add("JAVA");
-        farmList.add("ANDROID");
-        farmList.add("C Language");
-        farmList.add("CPP Language");
-        farmList.add("Go Language");
-        farmList.add("AVN SYSTEMS");
         ArrayAdapter<String> farmAd = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, farmList);
+                android.R.layout.simple_spinner_item, fn);
         farmAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         farm.setAdapter(farmAd);
 
-        ArrayList<String> cropList = new ArrayList<>();
-        cropList.add("JAVA");
-        cropList.add("ANDROID");
-        cropList.add("C Language");
-        cropList.add("CPP Language");
-        cropList.add("Go Language");
-        cropList.add("AVN SYSTEMS");
         ArrayAdapter<String> cropAd = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, cropList);
+                android.R.layout.simple_spinner_item, cn);
         cropAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         crop.setAdapter(cropAd);
 
         actadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String actN = activity.getSelectedItem().toString();
+                String f = farm.getSelectedItem().toString();
+                String c = crop.getSelectedItem().toString();
+                String date = Fdate.getText().toString();
+
+                db.addActivity(new ActivityShow(1, actN, f, c, date));
                 Toast.makeText(ActivityAdd.this, "Activity Added Successfully", Toast.LENGTH_SHORT).show();
                 Intent act = new Intent(ActivityAdd.this, Homepage.class);
                 startActivity(act);

@@ -7,13 +7,13 @@ public class ActivityShow {
     private String actName;
     private String crop;
     private String farm;
-    private Date date;
+    private String date;
 
-    public ActivityShow(int sno, String actName, String crop, String farm, Date date) {
-        this.sno = sno;
+    public ActivityShow(int sno, String actName, String farm, String crop, String date) {
+
         this.actName = actName;
-        this.crop = crop;
         this.farm = farm;
+        this.crop = crop;
         this.date = date;
     }
 
@@ -49,11 +49,11 @@ public class ActivityShow {
         this.farm = farm;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

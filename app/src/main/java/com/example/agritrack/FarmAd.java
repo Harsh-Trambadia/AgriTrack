@@ -12,28 +12,36 @@ import androidx.annotation.Nullable;
 
 import com.example.agritrack.R;
 
-public class FarmAd extends ArrayAdapter<String> {
+import java.util.List;
 
-    public String[] objects;
+public class FarmAd extends ArrayAdapter<FarmShow> {
 
-    public FarmAd(@NonNull Context context, int resource, @NonNull String[] objects) {
+
+
+    public FarmAd(@NonNull Context context, int resource, @NonNull List<FarmShow> objects) {
         super(context, resource, objects);
-        this.objects = objects;
+
     }
 
-    @NonNull
-    @Override
-    public String getItem(int position){
-        return objects[position];
-    }
+
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertview, @NonNull ViewGroup parent){
-        convertview = LayoutInflater.from(getContext()).inflate(R.layout.farm_layout, parent, false);
-        TextView farm = convertview.findViewById(R.id.Farm);
-        farm.setText(getItem(position));
-        return convertview;
+        View currentItemView = convertview;
+
+        currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.farm_layout, parent, false);
+
+        FarmShow currentFarmPosition = getItem(position);
+
+        TextView Fname = currentItemView.findViewById(R.id.Farm);
+        TextView Fdate = currentItemView.findViewById(R.id.fDate);
+
+        assert currentFarmPosition!=null;
+        Fname.setText(currentFarmPosition.getFarm());
+        Fdate.setText(currentFarmPosition.getDate());
+
+        return currentItemView;
     }
 
 }

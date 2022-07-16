@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ExpenseAdd extends AppCompatActivity {
     Button addE;
@@ -35,6 +36,10 @@ public class ExpenseAdd extends AppCompatActivity {
                     db.addExpense(new ExpenseShow(1, actName, val));
                     Intent home = new Intent(ExpenseAdd.this, Homepage.class);
                     startActivity(home);
+                }
+
+                else{
+                    Toast.makeText(ExpenseAdd.this, "Fill All Values", Toast.LENGTH_SHORT).show();
                 }
 
             }

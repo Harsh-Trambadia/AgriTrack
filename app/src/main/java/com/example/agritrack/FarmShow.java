@@ -1,14 +1,14 @@
 package com.example.agritrack;
 
-import java.util.Date;
+
 
 public class FarmShow {
     private int sno;
     private String farm;
-    private Date date;
+    private String date;
 
-    public FarmShow(int sno, String farm, Date date) {
-        this.sno = sno;
+    public FarmShow(int sno, String farm, String date) {
+
         this.farm = farm;
         this.date = date;
     }
@@ -29,11 +29,11 @@ public class FarmShow {
         this.farm = farm;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

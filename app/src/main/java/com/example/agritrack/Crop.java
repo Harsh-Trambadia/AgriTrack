@@ -13,16 +13,15 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 
 public class Crop extends Fragment {
     ListView l;
     FloatingActionButton ac;
-    String tutorials[]
-            = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
+    DbHandler db;
+    ArrayList<CropShow>  cropShow;
+
     public Crop(){
 
     }
@@ -39,7 +38,11 @@ public class Crop extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         l = (ListView) getView().findViewById(R.id.list);
-        CropAd adapter = new CropAd(getActivity(), R.layout.crop_layout, tutorials);
+
+        db = new DbHandler(getActivity());
+        cropShow = db.ShowCrop();
+
+        CropAd adapter = new CropAd(getActivity(), R.layout.crop_layout, cropShow);
         l.setAdapter(adapter);
 
         ac = getView().findViewById(R.id.AddCrop);

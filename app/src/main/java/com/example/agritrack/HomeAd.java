@@ -12,28 +12,37 @@ import androidx.annotation.Nullable;
 
 import com.example.agritrack.R;
 
-public class HomeAd extends ArrayAdapter<String> {
+import java.util.List;
 
-    public String[] objects;
+public class HomeAd extends ArrayAdapter<ActivityShow> {
 
-    public HomeAd(@NonNull Context context, int resource, @NonNull String[] objects) {
+
+
+    public HomeAd(@NonNull Context context, int resource, @NonNull List<ActivityShow> objects) {
         super(context, resource, objects);
-        this.objects = objects;
     }
 
-    @NonNull
-    @Override
-    public String getItem(int position){
-        return objects[position];
-    }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertview, @NonNull ViewGroup parent){
-        convertview = LayoutInflater.from(getContext()).inflate(R.layout.activity_layout, parent, false);
-        TextView act = convertview.findViewById(R.id.Activity);
-        act.setText(getItem(position));
-        return convertview;
+        View currentItemView = convertview;
+
+        currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.activity_layout, parent, false);
+
+        ActivityShow currentActPosition = getItem(position);
+
+        TextView Act = currentItemView.findViewById(R.id.Activity);
+        TextView F = currentItemView.findViewById(R.id.actF);
+        TextView C = currentItemView.findViewById(R.id.actC);
+        TextView D = currentItemView.findViewById(R.id.actD);
+
+        assert currentActPosition!=null;
+        Act.setText(currentActPosition.getActName());
+        F.setText(currentActPosition.getFarm());
+        C.setText(currentActPosition.getCrop());
+        D.setText(currentActPosition.getDate());
+        return currentItemView;
     }
 
 }

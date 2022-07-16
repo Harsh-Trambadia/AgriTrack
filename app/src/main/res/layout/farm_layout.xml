@@ -26,9 +26,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/fDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="date"
+            android:minHeight="48dp"
             android:text="date"
             android:textSize="16sp" />
     </LinearLayout>

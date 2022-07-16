@@ -14,16 +14,14 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 
 public class Farm extends Fragment {
     ListView l;
     FloatingActionButton af;
-    String tutorials[]
-            = { "Algorithms", "Data Structures",
-            "Languages", "Interview Corner",
-            "GATE", "ISRO CS",
-            "UGC NET CS", "CS Subjects",
-            "Web Technologies" };
+    DbHandler db;
+    ArrayList<FarmShow> farmShow;
 
     public Farm(){
 
@@ -40,8 +38,12 @@ public class Farm extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        db = new DbHandler(getActivity());
+        farmShow = db.showFarms();
+
         l = (ListView) getView().findViewById(R.id.list);
-        FarmAd adapter = new FarmAd(getActivity(), R.layout.farm_layout, tutorials);
+        FarmAd adapter = new FarmAd(getActivity(), R.layout.farm_layout, farmShow);
         l.setAdapter(adapter);
 
         af = getView().findViewById(R.id.AddFarm);

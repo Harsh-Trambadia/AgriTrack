@@ -44,7 +44,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/Fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -62,12 +62,12 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/Fdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/date"
-            android:inputType="date"
+            android:inputType="text"
             android:minHeight="48dp" />
 
         <Button

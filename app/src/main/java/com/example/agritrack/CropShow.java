@@ -6,11 +6,11 @@ public class CropShow {
     private int sno;
     private String crop;
     private String farm;
-    private Date fromDate;
-    private Date toDate;
+    private String fromDate;
+    private String toDate;
 
-    public CropShow(int sno, String crop, String farm, Date fromDate, Date toDate) {
-        this.sno = sno;
+    public CropShow(int sno, String crop, String farm, String fromDate, String toDate) {
+
         this.crop = crop;
         this.farm = farm;
         this.fromDate = fromDate;
@@ -41,19 +41,19 @@ public class CropShow {
         this.farm = farm;
     }
 
-    public Date getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
-    public Date getToDate() {
+    public String getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(String toDate) {
         this.toDate = toDate;
     }
 

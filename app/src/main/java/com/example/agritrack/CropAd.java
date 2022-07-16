@@ -1,6 +1,7 @@
 package com.example.agritrack;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,28 +13,60 @@ import androidx.annotation.Nullable;
 
 import com.example.agritrack.R;
 
-public class CropAd extends ArrayAdapter<String> {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
-    public String[] objects;
+public class CropAd extends ArrayAdapter<CropShow> {
 
-    public CropAd(@NonNull Context context, int resource, @NonNull String[] objects) {
+
+
+    public CropAd(@NonNull Context context, int resource, @NonNull List<CropShow> objects) {
         super(context, resource, objects);
-        this.objects = objects;
-    }
 
-    @NonNull
-    @Override
-    public String getItem(int position){
-        return objects[position];
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertview, @NonNull ViewGroup parent){
-        convertview = LayoutInflater.from(getContext()).inflate(R.layout.crop_layout, parent, false);
-        TextView crop = convertview.findViewById(R.id.Crop);
-        crop.setText(getItem(position));
-        return convertview;
+        View currentItemView = convertview;
+
+        currentItemView = LayoutInflater.from(getContext()).inflate(R.layout.crop_layout, parent, false);
+
+        CropShow currentCropPosition = getItem(position);
+        TextView cropName = currentItemView.findViewById(R.id.Crop);
+        TextView isActive = currentItemView.findViewById(R.id.isActive);
+
+        cropName.setText(currentCropPosition.getCrop());
+        String fDate = currentCropPosition.getFromDate();
+        String tDate = currentCropPosition.getToDate();
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            Date from = format.parse(fDate);
+            Date to = format.parse(tDate);
+            String date = new SimpleDateFormat("dd/mm/yyyy", Locale.getDefault()).format(new Date());
+            Date current = format.parse(date);
+
+            if (current.after(from) && current.before(to)){
+                isActive.setText("Active");
+                int c = Color.parseColor("#43a047");
+                isActive.setTextColor(c);
+            }
+            else{
+                isActive.setText("Ended");
+                int c = Color.parseColor("#eb4034");
+                isActive.setTextColor(c);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        assert currentCropPosition!=null;
+
+        return currentItemView;
     }
 
 }
