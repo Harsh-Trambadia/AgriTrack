@@ -36,12 +36,12 @@ public class ActivityAdd extends AppCompatActivity {
         cn = db.getCropName();
 
         ArrayList<String> activityList = new ArrayList<>();
-        activityList.add("JAVA");
-        activityList.add("ANDROID");
-        activityList.add("C Language");
-        activityList.add("CPP Language");
-        activityList.add("Go Language");
-        activityList.add("AVN SYSTEMS");
+        activityList.add("Sowing");
+        activityList.add("Manuring");
+        activityList.add("Irrigation");
+        activityList.add("Weeding");
+        activityList.add("Harvesting");
+
         ArrayAdapter<String> actAd = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, activityList);
         actAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

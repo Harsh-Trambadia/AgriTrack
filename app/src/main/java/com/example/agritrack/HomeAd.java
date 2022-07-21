@@ -38,10 +38,10 @@ public class HomeAd extends ArrayAdapter<ActivityShow> {
         TextView D = currentItemView.findViewById(R.id.actD);
 
         assert currentActPosition!=null;
-        Act.setText(currentActPosition.getActName());
-        F.setText(currentActPosition.getFarm());
-        C.setText(currentActPosition.getCrop());
-        D.setText(currentActPosition.getDate());
+        Act.setText(currentActPosition.getActName().toString());
+        F.setText(currentActPosition.getFarm().toString());
+        C.setText(currentActPosition.getCrop().toString());
+        D.setText(currentActPosition.getDate().toString());
         return currentItemView;
     }
 
